@@ -6,8 +6,8 @@
 class Lazychat < Formula
   desc "One terminal for all your AI coding agents"
   homepage "https://perpeer.github.io/lazychat/"
-  url "https://github.com/Perpeer/lazychat/archive/refs/tags/v1.0.10.tar.gz"
-  sha256 "269087243fb3e0cba23d10bdacf64d638c1fc06fcfefff37574168e841658907"
+  url "https://github.com/Perpeer/lazychat/archive/refs/tags/v1.0.11.tar.gz"
+  sha256 "053348beb17662ac0a531233a041656e534dc71e7ae3761e3b4bcd5e6f4fa7de"
   license "AGPL-3.0-only"
   head "https://github.com/Perpeer/lazychat.git", branch: "main"
 
