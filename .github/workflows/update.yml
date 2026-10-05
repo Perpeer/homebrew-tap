@@ -1,0 +1,31 @@
+# Keeps the formula on lazychat's newest release: every hour, and at once
+# with `gh workflow run update -R Perpeer/homebrew-tap`. It reads lazychat's
+# public releases and pushes to this repository with its own token, so
+# lazychat needs no secret for the tap. update.sh does the same by hand.
+name: update
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Formula
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ./update.sh
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/main)" ]; then
+            git push origin HEAD:main
+          fi
