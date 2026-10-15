@@ -3,7 +3,7 @@
 # named: its archive's url and sha256, nothing else, and a commit when they
 # changed. The tap's workflow runs it every hour; run it here when GitHub
 # cannot. Pushing is left to the caller.
-#   ./update.sh            the newest release
+#   ./update.sh            the newest release tag
 #   ./update.sh 1.0.3      that release
 #   ./update.sh --dry-run  say what would change, change nothing
 set -euo pipefail
@@ -21,9 +21,10 @@ for a in "$@"; do
 done
 
 if [ -z "$v" ]; then
-  # Read without a token: the repository is public.
-  v="$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" \
-    | sed -n 's/.*"tag_name": *"v\{0,1\}\([0-9][0-9.]*\)".*/\1/p' | head -n 1)"
+  # The newest tag through git, not the API: unauthenticated API reads are
+  # limited per address, and the runners share addresses.
+  v="$(git ls-remote --tags --sort=-version:refname "https://github.com/$repo" 'v*' \
+    | sed -n 's|.*refs/tags/v\([0-9][0-9.]*\)$|\1|p' | head -n 1)"
   [ -n "$v" ] || { echo "update.sh: GitHub named no newest release of $repo" >&2; exit 1; }
 fi
 

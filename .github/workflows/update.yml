@@ -1,6 +1,6 @@
 # Keeps the formula on lazychat's newest release: every hour, and at once
 # with `gh workflow run update -R Perpeer/homebrew-tap`. It reads lazychat's
-# public releases and pushes to this repository with its own token, so
+# public tags and pushes to this repository with its own token, so
 # lazychat needs no secret for the tap. update.sh does the same by hand.
 name: update
 
