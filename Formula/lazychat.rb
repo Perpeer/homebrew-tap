@@ -6,8 +6,8 @@
 class Lazychat < Formula
   desc "One terminal for all your AI coding agents"
   homepage "https://perpeer.github.io/lazychat/"
-  url "https://github.com/Perpeer/lazychat/archive/refs/tags/v1.0.26.tar.gz"
-  sha256 "79bc88f41a1f7638f853cc37f859c3ddaa976a80c68997417fe79e662f13a0e9"
+  url "https://github.com/Perpeer/lazychat/archive/refs/tags/v1.0.27.tar.gz"
+  sha256 "00f35e5f814c3ccfa00971f60adec60f65e82a6f541739cfdd9d6cde4d38c82d"
   license "PolyForm-Shield-1.0.0"
   head "https://github.com/Perpeer/lazychat.git", branch: "main"
 
